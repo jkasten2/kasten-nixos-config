@@ -61,6 +61,12 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+
+  # Required for HDR in sway
+  environment.variables = {
+    WLR_RENDERER = "vulkan";
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
