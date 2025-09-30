@@ -3,9 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-let 
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -18,7 +15,7 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "kasten_nixos_7700x"; # Define your hostname.
+  networking.hostName = "KastenNixOS7700x"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -79,7 +76,7 @@ in
 
     firefox
     steam
-    unstable.heroic
+    heroic
     discord
 
     # NOTE: Gamescope must match the wayland version. Otherwise you get an error like this:
