@@ -95,7 +95,9 @@
     gamescope
     gamemode
 
-    radeontop
+    amdgpu_top
+    radeontop # Simpler than amdgpu_top, but doesn't get updates anymore
+
     vulkan-loader
     vulkan-tools
     vulkan-validation-layers
