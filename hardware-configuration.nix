@@ -48,13 +48,13 @@
   };
 
   # KASTEN: Gets steam to launch, but vkcube --validate still has errors with vulkan
-  hardware.opengl = {
+  # hardware.opengl -> hardware.graphics
+  hardware.graphics = {
     enable = true;
-    # extraPackages = [ pkgs.mesa.drivers ];
     # driSupport = true; #NO longer has any effect
-    driSupport32Bit = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
-       mesa.drivers
+       mesa
 
        # KASTEN: Didn't help fix this error:
        #   terminator_CreateInstance: Received return code -3 from call to vkCreateInstance in ICD /nix/store/js9cfbjvlsls14nddk39fw74vyvlhz4l-mesa-25.0.7/lib/libvulkan_dzn.so
@@ -65,3 +65,4 @@
   }; 
 
 }
+
