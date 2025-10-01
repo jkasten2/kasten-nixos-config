@@ -14,12 +14,9 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations."KastenNixOS7700x" = 
-      let system = "x86_64-linux";
-      in nixpkgs.lib.nixosSystem {
+    nixosConfigurations."KastenNixOS7700x" = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
 
-      inherit system;
       modules = [
         ./configuration.nix
         # inputs.home-manager.nixosModules.default
