@@ -3,14 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
 
-    # TODO: try home-manager later
-    # home-manager = {
-    #   url = "github:nix-community/home-manager";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -22,8 +20,7 @@
         ({ pkgs, ... }: {
           nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlays.default ];
         })
-        # inputs.home-manager.nixosModules.default
-
+        inputs.home-manager.nixosModules.default
       ];
     };
   };
