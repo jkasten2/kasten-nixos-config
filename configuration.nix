@@ -80,6 +80,12 @@
     };
   };
 
+  environment.loginShellInit = ''
+   echo "TOP .bash_profile"
+   echo $WLR_RENDERER
+   [ "$(tty)" = "/dev/tty1" ] && exec sway
+  '';
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

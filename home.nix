@@ -9,6 +9,12 @@
    home.username = "kasten";
    home.homeDirectory = "/home/kasten";
 
+   programs.bash.enable = true;
+
+   home.shellAliases = {
+     "cd.." = "cd ..";
+   };
+
    programs.foot = {
      enable = true;
      settings = {
