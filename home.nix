@@ -16,6 +16,12 @@
          dpi-aware = "yes";
          font = "Courier New:size=11";
        };
+       
+       scrollback.lines = 10000;
+       key-bindings = {
+         scrollback-home = "Shift+Home";
+         scrollback-end  = "Shift+End";
+       };
      };
    };
 }
