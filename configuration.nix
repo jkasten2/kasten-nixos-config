@@ -99,15 +99,8 @@
     wl-clipboard # cp and paste for Sway WM
     mako # Sway notification system
 
-    firefox
-    steam
     heroic
     discord
-
-    # NOTE: Gamescope must match the wayland version. Otherwise you get an error like this:
-    # [gamescope] [Error] wlserver: [xwayland/server.c:269] Xwayland startup failed, not setting up xwm
-    gamescope
-    gamemode
 
     amdgpu_top
     radeontop # Simpler than amdgpu_top, but doesn't get updates anymore
@@ -121,13 +114,15 @@
     bluez # Bluetooth support
     bluez-tools # Bluetooth tools
     blueman # GUI
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
   ];
 
-  #programs.gamescope.enable = true;
-  #programs.gamemode.enable = true;
+  programs.steam.enable = true;
+  programs.firefox.enable = true;
 
+  # NOTE: Gamescope must match the wayland version. Otherwise you get an error like this:
+  # [gamescope] [Error] wlserver: [xwayland/server.c:269] Xwayland startup failed, not setting up xwm
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
 
   services.pulseaudio.enable = false; # Use Pipewire, the modern sound subsystem
 
