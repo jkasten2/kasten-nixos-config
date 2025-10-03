@@ -92,7 +92,10 @@
     git
 
     vim
+
     htop
+    btop
+
     smem
     ethtool
 
