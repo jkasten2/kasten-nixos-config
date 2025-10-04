@@ -19,7 +19,7 @@
      enable = true;
      settings = {
        main = {
-         dpi-aware = "yes";
+         dpi-aware = "no";
          font = "Courier New:size=11";
        };
        
