@@ -10,6 +10,11 @@
    home.homeDirectory = "/home/kasten";
 
    programs.bash.enable = true;
+   # A fuzzy search with Control+r
+   programs.fzf = {
+     enable = true;
+     enableBashIntegration = true;
+   };
 
    home.shellAliases = {
      "cd.." = "cd ..";
