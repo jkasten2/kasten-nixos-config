@@ -75,6 +75,8 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    # Required for nixpkgs-wayland.overlay, defined in flake.nix
+    useGlobalPkgs = true;
     users = {
       "kasten" = import ./home.nix;
     };
@@ -100,7 +102,6 @@
     ethtool
 
     wl-clipboard # cp and paste for Sway WM
-    mako # Sway notification system
 
     heroic
     discord
@@ -119,6 +120,10 @@
     blueman # GUI
   ];
 
+  fonts.packages = with pkgs; [
+    corefonts
+  ];
+
   programs.steam.enable = true;
   programs.firefox.enable = true;
 
@@ -130,6 +135,10 @@
   services.pulseaudio.enable = false; # Use Pipewire, the modern sound subsystem
 
   security.rtkit.enable = true; # Enable RealtimeKit for audio purposes
+  security.polkit.enable = true; # Required to use Sway with Home-Manager
+  # Required when using programs.swaylock.enable = true;
+  # Otherwise it says password is wrong and won't unlock
+  security.pam.services.swaylock = {};
 
   services.pipewire = {
     enable = true;
@@ -141,27 +150,6 @@
   };
 
   services.gnome.gnome-keyring.enable = true;
-
-  # Sway Window Manager
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-
-    extraPackages = with pkgs; [
-       brightnessctl
-       grim
-       pulseaudio
-       swayidle
-       swaylock
-       wmenu
-
-       # These two are for larger corsors, easier to see on a 4k screen
-       # Make sure to all this line in your ~/.config/sway/config:
-       #  seat "*" xcursor_theme Adwaita 24
-       adwaita-icon-theme # mouse cursor and icons
-       gnome-themes-extra # dark adwaita theme
-    ];
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
