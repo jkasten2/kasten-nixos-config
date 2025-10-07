@@ -39,6 +39,9 @@
          scrollback-home = "Shift+Home";
          scrollback-end  = "Shift+End";
        };
+       colors = {
+         background = "000000";
+       };
      };
    };
 
@@ -72,9 +75,21 @@
          #   (enabled by default; to set it manually, use "adaptive" instead of "flat"
          "type:pointer" = { accel_profile = "flat"; };
        };
+
+       fonts = {
+         names = [ "Roboto" ];
+         style = "Normal";
+         size = 11.0;
+       };
+
        bars = [{
          position = "top";
          statusCommand = "while date +'%Y-%m-%d %X'; do sleep 1; done";
+         fonts = {
+           names = [ "Roboto Mono" ];
+           style = "Bold";
+           size = 11.0;
+         };
        }];
      };
 
