@@ -31,7 +31,7 @@
      settings = {
        main = {
          dpi-aware = "no";
-         font = "Courier New:size=11";
+         font = "monospace:size=11";
        };
        
        scrollback.lines = 10000;
