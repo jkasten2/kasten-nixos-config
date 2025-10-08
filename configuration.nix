@@ -115,9 +115,7 @@
 
     pavucontrol # PulseAudio Volume Control
     pamixer # Command-line mixer for PulseAudio
-    bluez # Bluetooth support
-    bluez-tools # Bluetooth tools
-    blueman # GUI
+    gnome-icon-theme # Icons for some apps, like blueman
   ];
 
   fonts.packages = with pkgs; [
@@ -133,6 +131,12 @@
   programs.gamemode.enable = true;
 
   services.pulseaudio.enable = false; # Use Pipewire, the modern sound subsystem
+
+  # dconf required to avoid warning with blueman-manager
+  # failed to commit changes to dconf: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown:
+  #   The name ca.desrt.dconf was not provided by any .service files
+  programs.dconf.enable = true;
+  services.blueman.enable = true;
 
   security.rtkit.enable = true; # Enable RealtimeKit for audio purposes
   security.polkit.enable = true; # Required to use Sway with Home-Manager

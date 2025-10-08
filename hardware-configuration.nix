@@ -10,7 +10,7 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" ]; # KASTEN: Added amdgpu, but didn't help steam start
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "btusb" "bluetooth" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -46,6 +46,8 @@
     enable = true;
     powerOnBoot = true;
   };
+
+  hardware.enableAllFirmware = true;
 
   # KASTEN: Gets steam to launch, but vkcube --validate still has errors with vulkan
   # hardware.opengl -> hardware.graphics

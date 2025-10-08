@@ -100,5 +100,6 @@
 
    programs.swaylock.enable = true;
    services.mako.enable = true; # Lightweight notification UI
+   services.blueman-applet.enable = true; # Enable bluetooth bar icon
 }
 
