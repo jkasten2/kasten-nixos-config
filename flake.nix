@@ -9,6 +9,20 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    elephant = {
+      url = "github:abenz1267/elephant";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # TODO: Got to be a better way to chain follows
+      inputs.systems.follows = "nixpkgs-wayland/lib-aggregate/flake-utils/systems";
+    };
+    walker = {
+      url = "github:abenz1267/walker";
+      # TODO: Probabaly something this package should handle for us?
+      inputs.elephant.follows = "elephant";
+      inputs.nixpkgs.follows = "elephant/nixpkgs";
+      inputs.systems.follows = "elephant/systems";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -17,11 +31,14 @@
 
       modules = [
         ./configuration.nix
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlays.default ];
-        })
         inputs.home-manager.nixosModules.default
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [
+            inputs.nixpkgs-wayland.overlays.default
+          ];
+        })
       ];
+
     };
   };
 }

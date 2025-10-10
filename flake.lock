@@ -1,5 +1,31 @@
 {
   "nodes": {
+    "elephant": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "nixpkgs-wayland",
+          "lib-aggregate",
+          "flake-utils",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760007807,
+        "narHash": "sha256-MXy09vat+EqXIQO4ExudXML8/Ksb0f8NmqHcwRkQuZU=",
+        "owner": "abenz1267",
+        "repo": "elephant",
+        "rev": "c91e46e3d2ae11d295cf27e3c16298546399d713",
+        "type": "github"
+      },
+      "original": {
+        "owner": "abenz1267",
+        "repo": "elephant",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "locked": {
         "lastModified": 1746162366,
@@ -127,9 +153,11 @@
     },
     "root": {
       "inputs": {
+        "elephant": "elephant",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-wayland": "nixpkgs-wayland"
+        "nixpkgs-wayland": "nixpkgs-wayland",
+        "walker": "walker"
       }
     },
     "systems": {
@@ -144,6 +172,34 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "walker": {
+      "inputs": {
+        "elephant": [
+          "elephant"
+        ],
+        "nixpkgs": [
+          "elephant",
+          "nixpkgs"
+        ],
+        "systems": [
+          "elephant",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760002616,
+        "narHash": "sha256-oUgvmPai5TXdKGAvmXO7+flopqptWccrohJjTmXJUfQ=",
+        "owner": "abenz1267",
+        "repo": "walker",
+        "rev": "98671afb9e27ef34f30d991a147e190907a0bf9f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "abenz1267",
+        "repo": "walker",
         "type": "github"
       }
     }
