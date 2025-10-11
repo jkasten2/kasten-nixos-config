@@ -16,6 +16,10 @@
      enableBashIntegration = true;
    };
 
+   home.packages = with pkgs; [
+     ncdu
+   ];
+
    home.shellAliases = {
      "cd.." = "cd ..";
    };
