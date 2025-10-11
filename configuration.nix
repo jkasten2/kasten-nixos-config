@@ -116,6 +116,9 @@
     pavucontrol # PulseAudio Volume Control
     pamixer # Command-line mixer for PulseAudio
     gnome-icon-theme # Icons for some apps, like blueman
+
+    xdg-utils
+    calc
   ];
 
   fonts.packages = with pkgs; [
@@ -140,6 +143,7 @@
 
   security.rtkit.enable = true; # Enable RealtimeKit for audio purposes
   security.polkit.enable = true; # Required to use Sway with Home-Manager
+
   # Required when using programs.swaylock.enable = true;
   # Otherwise it says password is wrong and won't unlock
   security.pam.services.swaylock = {};

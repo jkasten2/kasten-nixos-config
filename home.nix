@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
    # Let Home Manager install and manage itself.
@@ -56,6 +56,7 @@
          # mkOptionDefault keeps defaults for all other keybindings
          in lib.mkOptionDefault {
            "${modifier}+control+l" = "exec swaylock";
+           "${modifier}+d" = "exec walker";
          };
 
        output = {
@@ -101,5 +102,24 @@
    programs.swaylock.enable = true;
    services.mako.enable = true; # Lightweight notification UI
    services.blueman-applet.enable = true; # Enable bluetooth bar icon
+
+   imports = [inputs.walker.homeManagerModules.default];
+   programs.walker = {
+     enable = true;
+     # runAsService = true;
+     config = {
+       force_keyboard_focus = true;
+       debug = false;
+     };
+   };
+
+   programs.elephant = {
+     installService = true;
+   };
+
+   systemd.user.services.elephant = {
+     # https://github.com/abenz1267/elephant/issues/69
+     Service.Environment = "PATH=/home/kasten/.nix-profile/bin/:/run/current-system/sw/bin/";
+   };
 }
 
