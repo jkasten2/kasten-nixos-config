@@ -30,6 +30,11 @@
      eza # Better ls command
    ];
 
+  # Sound tray applet for volume control
+  services.pasystray.enable = true;
+  # Requires the following in configuration.nix
+  # services.avahi.enable = true;
+
    home.shellAliases = {
      "cd.." = "cd ..";
    };

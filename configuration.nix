@@ -157,6 +157,8 @@
     # jack.enable = true;
   };
 
+  services.avahi.enable = true;
+
   services.gnome.gnome-keyring.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
