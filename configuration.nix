@@ -26,7 +26,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.interfaces.enp16s0.wakeOnLan.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
