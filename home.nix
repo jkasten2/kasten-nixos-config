@@ -111,6 +111,16 @@
            size = 11.0;
          };
        }];
+       window.commands = [
+         # Sound control UI config;
+         # Always float at the mouse cursor, so it's faster control
+         {
+           command = "floating on, move position cursor, move down [HEIGHT OF STATUS BAR]";
+           criteria = {
+             app_id = "pavucontrol";
+           };
+         }
+       ];
      };
 
      # Configs that don't have types yet in home-manager can go here
