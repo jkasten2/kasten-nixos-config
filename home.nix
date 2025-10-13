@@ -17,7 +17,17 @@
    };
 
    home.packages = with pkgs; [
+     # disk space finders
+     dust
      ncdu
+
+     # Better find and grep commands
+     fd
+     ripgrep
+
+     tldr # shorter man pages
+
+     eza # Better ls command
    ];
 
    home.shellAliases = {
