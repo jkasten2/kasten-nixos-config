@@ -28,6 +28,8 @@
      tldr # shorter man pages
 
      eza # Better ls command
+
+     pasystray
    ];
 
   # Sound tray applet for volume control
