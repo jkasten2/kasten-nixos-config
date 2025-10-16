@@ -39,6 +39,7 @@
 
    home.shellAliases = {
      "cd.." = "cd ..";
+     "ll" = "eza -lah";
    };
 
    home.pointerCursor = {
