@@ -119,9 +119,11 @@
          # Always float at the mouse cursor, so it's faster control
          {
            command = "floating on, move position cursor, move down [HEIGHT OF STATUS BAR]";
-           criteria = {
-             app_id = "pavucontrol";
-           };
+           criteria = { app_id = "pavucontrol"; };
+         }
+         {
+           command = "floating on, move position cursor, move down [HEIGHT OF STATUS BAR]";
+           criteria = { app_id = "blueman-manager"; };
          }
        ];
      };
