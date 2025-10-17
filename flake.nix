@@ -10,6 +10,11 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     elephant = {
       url = "github:abenz1267/elephant";
       inputs.nixpkgs.follows = "nixpkgs";

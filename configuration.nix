@@ -68,9 +68,7 @@
     WLR_RENDERER = "vulkan";
   };
 
-
-  environment.variables.EDITOR = "vim";
-
+  environment.variables.EDITOR = "nvim";
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
@@ -91,8 +89,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
-
-    vim
 
     htop
     btop
@@ -122,12 +118,14 @@
 
   fonts.packages = with pkgs; [
     corefonts
+    nerd-fonts.symbols-only
   ];
 
   programs.steam = {
     enable = true;
     extraCompatPackages = [ pkgs.proton-ge-bin ];
   };
+
   programs.firefox.enable = true;
 
   # NOTE: Gamescope must match the wayland version. Otherwise you get an error like this:

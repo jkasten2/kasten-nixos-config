@@ -6,6 +6,12 @@
 
    home.stateVersion = "25.11";
 
+   imports = [
+     inputs.walker.homeManagerModules.default
+     inputs.nixvim.homeModules.nixvim
+   ];
+
+
    home.username = "kasten";
    home.homeDirectory = "/home/kasten";
 
@@ -40,6 +46,36 @@
    home.shellAliases = {
      "cd.." = "cd ..";
      "ll" = "eza -lah";
+   };
+
+
+   programs.vim = {
+     enable = true;
+   };
+
+   programs.nixvim = {
+     enable = true;
+     defaultEditor = true;
+
+     opts = {
+       shiftwidth = 2; # Tab width should be 2
+     };
+     diagnostic.settings = {
+       virtual_text = true;
+     };
+     colorschemes.solarized-osaka.enable = true;
+
+     plugins = {
+       lsp = {
+         enable = true;
+         servers = {
+           # nix lang
+           nil_ls.enable = true;
+         };
+       };
+       # Improved bottom status line
+       lualine.enable = true;
+     };
    };
 
    home.pointerCursor = {
@@ -137,7 +173,6 @@
    services.mako.enable = true; # Lightweight notification UI
    services.blueman-applet.enable = true; # Enable bluetooth bar icon
 
-   imports = [inputs.walker.homeManagerModules.default];
    programs.walker = {
      enable = true;
      # runAsService = true;
