@@ -4,8 +4,15 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/master";
 
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
+    # TODO: Is there a better way to force follow all flake-util and systems
+    #       usages to keep the .lock file cleaner?
+    flake-utils.url = "github:numtide/flake-utils";
+
+    nixpkgs-wayland = {
+      url = "github:nix-community/nixpkgs-wayland";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lib-aggregate.inputs.flake-utils.follows = "flake-utils";
+    };
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -13,13 +20,14 @@
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nuschtosSearch.inputs.flake-utils.follows = "flake-utils";
+      inputs.systems.follows = "flake-utils/systems";
     };
 
     elephant = {
       url = "github:abenz1267/elephant";
       inputs.nixpkgs.follows = "nixpkgs";
-      # TODO: Got to be a better way to chain follows
-      inputs.systems.follows = "nixpkgs-wayland/lib-aggregate/flake-utils/systems";
+      inputs.systems.follows = "flake-utils/systems";
     };
     walker = {
       url = "github:abenz1267/walker";
