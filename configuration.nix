@@ -125,6 +125,20 @@
     enable = true;
     extraCompatPackages = [ pkgs.proton-ge-bin ];
   };
+  nixpkgs.config.packageOverrides = pkgs: {
+    steam = pkgs.steam.override {
+      extraEnv = {
+        # Prevents use of X11, can fix scaling issues
+        PROTON_ENABLE_WAYLAND = 1;
+        PROTON_ENABLE_HDR = 1;
+        # Allows game to run in background;
+        # This prevents some games from crashing and allows networking to
+        # work in the background too, peventing disconnects.
+        # If you need to disable per game, use = with nothing to the right.
+        MESA_VK_WSI_PRESENT_MODE = "immediate";
+      };
+    };
+  };
 
   programs.firefox.enable = true;
 
