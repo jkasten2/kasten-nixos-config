@@ -123,7 +123,13 @@
 
   programs.steam = {
     enable = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    extraCompatPackages = [
+       pkgs.proton-ge-bin
+       pkgs.proton-ge-10-20-bin
+       pkgs.proton-ge-10-19-bin
+       pkgs.proton-ge-10-18-bin
+       pkgs.proton-ge-10-17-bin
+    ];
   };
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {

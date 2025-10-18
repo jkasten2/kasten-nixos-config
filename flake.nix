@@ -49,6 +49,7 @@
           nixpkgs.overlays = [
             inputs.nixpkgs-wayland.overlays.default
             (import ./gamescope.nix)
+            (import ./proton-ge-custom.nix)
           ];
         })
       ];
