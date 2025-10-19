@@ -59,6 +59,8 @@
 
      opts = {
        shiftwidth = 2; # Tab width should be 2
+       list = true; # Shows tab character and trailing white space
+       spell = true;
      };
      diagnostic.settings = {
        virtual_text = true;
