@@ -77,6 +77,7 @@
        };
        # Improved bottom status line
        lualine.enable = true;
+       which-key.enable = true;
      };
    };
 
