@@ -1,5 +1,3 @@
-with builtins;
-
 final: prev:
 
 let
@@ -13,26 +11,18 @@ let
   genZipUrl = v:
     "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/" +
     "${v}/${v}.tar.gz";
-  protonVersionSet = { version, sha256 }:
-    {
-      "proton-ge-${version}-bin" = overrideProtonVersion {
-         displayName = "GE-Proton${version}";
-         pname = "proton-ge-${version}-bin";
-         sha256 = sha256;
-       };
+  overrideProtonVersion = { version, sha256 }: let
+    displayName = "GE-Proton${version}";
+    pname = "proton-ge-${version}-bin";
+  in {
+    ${pname} = (
+      packageToOverride.override { steamDisplayName = displayName; }
+    ).overrideAttrs {
+      pname = pname;
+      version = displayName;
+      src = prev.fetchzip { url = genZipUrl displayName; sha256 = sha256; };
     };
-  overrideProtonVersion = { displayName, pname, sha256 }:
-    (
-      packageToOverride.override {
-        steamDisplayName = displayName;
-      }
-    ).overrideAttrs (
-      {
-        pname = pname;
-        version = displayName;
-        src = prev.fetchzip { url = genZipUrl displayName; sha256 = sha256; };
-      }
-    );
+  };
 in
-foldl'(acc: item: protonVersionSet(item) // acc) {} versionList
+builtins.foldl'(acc: item: overrideProtonVersion(item) // acc) {} versionList
 
