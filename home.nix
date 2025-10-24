@@ -109,6 +109,8 @@
    wayland.windowManager.sway = {
      enable = true;
      wrapperFeatures.gtk = true;
+     systemd.variables = [ "--all" ];
+
      config = rec {
        modifier = "Mod4";
        keybindings =
@@ -187,11 +189,6 @@
 
    programs.elephant = {
      installService = true;
-   };
-
-   systemd.user.services.elephant = {
-     # https://github.com/abenz1267/elephant/issues/69
-     Service.Environment = "PATH=/home/kasten/.nix-profile/bin/:/run/current-system/sw/bin/";
    };
 
    programs.obs-studio = {
