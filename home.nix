@@ -36,6 +36,10 @@
      eza # Better ls command
 
      pasystray
+
+     pulseaudio
+     jq
+     pulsemixer
    ];
 
   # Sound tray applet for volume control
@@ -120,6 +124,13 @@
          in lib.mkOptionDefault {
            "${modifier}+control+l" = "exec swaylock";
            "${modifier}+d" = "exec walker";
+
+           "${modifier}+alt+equal" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+";
+           "${modifier}+alt+minus" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-";
+           # Change volume of the foreground program;
+           # NOTE: Has bug, if the app has two outputs volume with jumps way up. Happens in firefox with 2 YouTub tags. Seems like a wpctl bug to me.
+           "${modifier}+control+alt+equal" = "exec wpctl set-volume -p `swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true) | .pid'` 2%+";
+           "${modifier}+control+alt+minus" = "exec wpctl set-volume -p `swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true) | .pid'` 2%-";
          };
 
        output = {
