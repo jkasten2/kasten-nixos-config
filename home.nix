@@ -170,11 +170,11 @@
          # Sound control UI config;
          # Always float at the mouse cursor, so it's faster control
          {
-           command = "floating on, move position cursor, move down [HEIGHT OF STATUS BAR]";
+           command = "floating on, move workspace current, urgent enable, sticky enable, move position cursor, move down [HEIGHT OF STATUS BAR]";
            criteria = { app_id = "pavucontrol"; };
          }
          {
-           command = "floating on, move position cursor, move down [HEIGHT OF STATUS BAR]";
+           command = "floating on, move workspace current, urgent enable, sticky enable, move position cursor, move down [HEIGHT OF STATUS BAR]";
            criteria = { app_id = "blueman-manager"; };
          }
        ];
