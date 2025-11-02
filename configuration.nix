@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -13,8 +13,14 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  # Bootloader
+  # Must be disable for boot.lanzaboote (Secure Boot) to work
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "KastenNixOS7700x"; # Define your hostname.
@@ -89,6 +95,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
+
+    sbctl
 
     htop
     btop

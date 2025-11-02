@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # TODO: Is there a better way to force follow all flake-util and systems
     #       usages to keep the .lock file cleaner?
     flake-utils.url = "github:numtide/flake-utils";
@@ -38,11 +43,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, lanzaboote, ... }@inputs: {
     nixosConfigurations."KastenNixOS7700x" = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
 
       modules = [
+        lanzaboote.nixosModules.lanzaboote
         ./configuration.nix
         inputs.home-manager.nixosModules.default
         ({ pkgs, ... }: {
