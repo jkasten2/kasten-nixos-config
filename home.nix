@@ -40,6 +40,8 @@
      pulseaudio
      jq
      pulsemixer
+
+     parsec-bin
    ];
 
   # Sound tray applet for volume control
@@ -207,7 +209,7 @@
      plugins = [
        pkgs.obs-studio-plugins.obs-vkcapture
        pkgs.obs-studio-plugins.wlrobs
-       pkgs.obs-studio-plugins.droidcam-obs
+      # pkgs.obs-studio-plugins.droidcam-obs
      ];
    };
 }
