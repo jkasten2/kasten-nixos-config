@@ -23,6 +23,8 @@
    };
 
    home.packages = with pkgs; [
+     unzip
+
      # disk space finders
      dust
      ncdu
@@ -42,6 +44,10 @@
      pulsemixer
 
      parsec-bin
+
+     sm64coopdx
+
+     gparted # Must run with sudo -E
    ];
 
   # Sound tray applet for volume control
