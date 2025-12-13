@@ -116,8 +116,8 @@
     vulkan-tools
     vulkan-validation-layers
 
-    pavucontrol # PulseAudio Volume Control
-    pamixer # Command-line mixer for PulseAudio
+    pwvucontrol # System Volume GUI (PipeWire)
+
     gnome-icon-theme # Icons for some apps, like blueman
 
     xdg-utils
@@ -180,6 +180,8 @@
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
+    # Uncomment if you need PulseAudio backwards compatibility.
+    # Seems Discord still needs this yet
     pulse.enable = true;
     # Uncomment the following line if you want to use JACK applications
     # jack.enable = true;

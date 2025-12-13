@@ -11,7 +11,6 @@
      inputs.nixvim.homeModules.nixvim
    ];
 
-
    home.username = "kasten";
    home.homeDirectory = "/home/kasten";
 
@@ -37,11 +36,7 @@
 
      eza # Better ls command
 
-     pasystray
-
-     pulseaudio
      jq
-     pulsemixer
 
      parsec-bin
 
@@ -49,11 +44,6 @@
 
      gparted # Must run with sudo -E
    ];
-
-  # Sound tray applet for volume control
-  services.pasystray.enable = true;
-  # Requires the following in configuration.nix
-  # services.avahi.enable = true;
 
    home.shellAliases = {
      "cd.." = "cd ..";
@@ -127,7 +117,24 @@
        modifier = "Mod4";
        keybindings =
          let
-             modifier = config.wayland.windowManager.sway.config.modifier;
+           modifier = config.wayland.windowManager.sway.config.modifier;
+           pipewire_inc_foreground_volume = pkgs.writeShellApplication {
+             name = "pipewire-inc-foreground-volume";
+             text = ''
+               # PURPOSE: Work around for "wpctl set-volume -p PID" bug with increase / decrease volume.
+               #   If a PID has two outputs, one of the volumes will jump way up.
+               #   Example, happens in Firefox when there are two YouTube tabs open. Also with some games.
+               FOREGROUND_PID="$(swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true) | .pid')"
+               PWDUMP_OUTPUT=$(pw-dump)
+               OBJ_IDS=$(echo "$PWDUMP_OUTPUT" | jq --argjson pid "$FOREGROUND_PID" '.[] | select(.info.props."application.process.id"==$pid) | .id')
+               NODE_IDS=$(echo "$OBJ_IDS" | while IFS= read -r line; do echo "$PWDUMP_OUTPUT" | jq --argjson line "$line" '.[] | select(.info.props."client.id"==$line) | .id'; done)
+
+               for node_id in $NODE_IDS; do
+                 wpctl set-volume "$node_id" "$1"
+               done
+             '';
+           };
+
          # mkOptionDefault keeps defaults for all other keybindings
          in lib.mkOptionDefault {
            "${modifier}+control+l" = "exec swaylock";
@@ -135,10 +142,8 @@
 
            "${modifier}+alt+equal" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+";
            "${modifier}+alt+minus" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-";
-           # Change volume of the foreground program;
-           # NOTE: Has bug, if the app has two outputs volume with jumps way up. Happens in firefox with 2 YouTub tags. Seems like a wpctl bug to me.
-           "${modifier}+control+alt+equal" = "exec wpctl set-volume -p `swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true) | .pid'` 2%+";
-           "${modifier}+control+alt+minus" = "exec wpctl set-volume -p `swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true) | .pid'` 2%-";
+           "${modifier}+control+alt+equal" = "exec ${lib.getExe pipewire_inc_foreground_volume} 2%+";
+           "${modifier}+control+alt+minus" = "exec ${lib.getExe pipewire_inc_foreground_volume} 2%-";
          };
 
        output = {
@@ -179,7 +184,7 @@
          # Always float at the mouse cursor, so it's faster control
          {
            command = "floating on, move workspace current, urgent enable, sticky enable, move position cursor, move down [HEIGHT OF STATUS BAR]";
-           criteria = { app_id = "pavucontrol"; };
+           criteria = { app_id = "pwvucontrol"; };
          }
          {
            command = "floating on, move workspace current, urgent enable, sticky enable, move position cursor, move down [HEIGHT OF STATUS BAR]";
