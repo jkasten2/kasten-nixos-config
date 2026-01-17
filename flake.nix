@@ -2,7 +2,7 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/master";
