@@ -102,7 +102,7 @@
          scrollback-home = "Shift+Home";
          scrollback-end  = "Shift+End";
        };
-       colors = {
+       colors-dark = {
          background = "000000";
        };
      };
