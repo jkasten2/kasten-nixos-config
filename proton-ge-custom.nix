@@ -4,9 +4,7 @@ let
   packageToOverride = prev.proton-ge-bin;
   versionList = [
     { version = "10-20"; sha256 = "sha256-sJkaDEnfAuEqcLDBtAfU6Rny3P3lOCnG1DusWfvv2Fg="; }
-    { version = "10-19"; sha256 = "sha256-vV009ZlYFEAI1jkfMql46QnJXekRup5TqajVSc57f3U="; }
-    { version = "10-18"; sha256 = "sha256-s2xnoyRy4JI1weRJ+9wjZzBRpsH7HMbK9DbhdVDJKww="; }
-    { version = "10-17"; sha256 = "sha256-GMwAAKuaBhDv1TvAuW9DVcXSYPRM87NP6NnJfk8O8ZU="; }
+    { version = "10-28"; sha256 = "sha256-6NvSGX8445la6WU6z9UaaKJm30eg094cuTyhHVDjbOo="; }
   ];
   genZipUrl = v:
     "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/" +

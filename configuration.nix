@@ -134,9 +134,7 @@
     extraCompatPackages = [
        pkgs.proton-ge-bin
        pkgs.proton-ge-10-20-bin
-       pkgs.proton-ge-10-19-bin
-       pkgs.proton-ge-10-18-bin
-       pkgs.proton-ge-10-17-bin
+       pkgs.proton-ge-10-28-bin
     ];
   };
   nixpkgs.config.packageOverrides = pkgs: {
