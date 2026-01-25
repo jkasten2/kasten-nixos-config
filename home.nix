@@ -72,6 +72,13 @@
      colorschemes.solarized-osaka.enable = true;
 
      plugins = {
+       # Improved bottom status line
+       lualine.enable = true;
+       which-key.enable = true;
+
+       # LSP provides syntax errors
+       # Treesitter provides syntax highlighting for nesting languages,
+       #  such as JS inside of HTML
        lsp = {
          enable = true;
          servers = {
@@ -79,10 +86,20 @@
            nil_ls.enable = true;
          };
        };
-       # Improved bottom status line
-       lualine.enable = true;
-       which-key.enable = true;
-     };
+
+       treesitter = {
+         enable = true;
+         withAllGrammars = true;
+         settings = {
+           highlight = {
+             enable = true;
+           };
+         };
+       };
+       treesitter-context = {
+         enable = true;
+       };
+      };
    };
 
    home.pointerCursor = {
