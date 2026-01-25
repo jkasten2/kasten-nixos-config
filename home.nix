@@ -43,6 +43,8 @@
      sm64coopdx
 
      gparted # Must run with sudo -E
+
+     grim # Screenshot util
    ];
 
    home.shellAliases = {
@@ -144,6 +146,8 @@
            "${modifier}+alt+minus" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-";
            "${modifier}+control+alt+equal" = "exec ${lib.getExe pipewire_inc_foreground_volume} 2%+";
            "${modifier}+control+alt+minus" = "exec ${lib.getExe pipewire_inc_foreground_volume} 2%-";
+
+           "Shift+Control+F12" = "exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy";
          };
 
        output = {
@@ -220,7 +224,7 @@
      plugins = [
        pkgs.obs-studio-plugins.obs-vkcapture
        pkgs.obs-studio-plugins.wlrobs
-      # pkgs.obs-studio-plugins.droidcam-obs
+       pkgs.obs-studio-plugins.droidcam-obs
      ];
    };
 }
