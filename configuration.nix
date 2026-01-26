@@ -2,14 +2,23 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, lib, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -61,13 +70,15 @@
   users.users.kasten = {
     isNormalUser = true;
     description = "kasten";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
 
   # Required for HDR in sway
   environment.variables = {
@@ -86,9 +97,9 @@
   };
 
   environment.loginShellInit = ''
-   echo "TOP .bash_profile"
-   echo $WLR_RENDERER
-   [ "$(tty)" = "/dev/tty1" ] && exec sway
+    echo "TOP .bash_profile"
+    echo $WLR_RENDERER
+    [ "$(tty)" = "/dev/tty1" ] && exec sway
   '';
 
   # List packages installed in system profile. To search, run:
@@ -132,9 +143,9 @@
   programs.steam = {
     enable = true;
     extraCompatPackages = [
-       pkgs.proton-ge-bin
-       pkgs.proton-ge-10-20-bin
-       pkgs.proton-ge-10-28-bin
+      pkgs.proton-ge-bin
+      pkgs.proton-ge-10-20-bin
+      pkgs.proton-ge-10-28-bin
     ];
   };
   nixpkgs.config.packageOverrides = pkgs: {
@@ -172,7 +183,7 @@
 
   # Required when using programs.swaylock.enable = true;
   # Otherwise it says password is wrong and won't unlock
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   services.pipewire = {
     enable = true;
@@ -221,4 +232,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 }
-

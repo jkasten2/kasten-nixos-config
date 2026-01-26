@@ -43,24 +43,33 @@
     };
   };
 
-  outputs = { self, nixpkgs, lanzaboote, ... }@inputs: {
-    nixosConfigurations."KastenNixOS7700x" = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      lanzaboote,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations."KastenNixOS7700x" = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
 
-      modules = [
-        lanzaboote.nixosModules.lanzaboote
-        ./configuration.nix
-        inputs.home-manager.nixosModules.default
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [
-            inputs.nixpkgs-wayland.overlays.default
-            (import ./gamescope.nix)
-            (import ./proton-ge-custom.nix)
-          ];
-        })
-      ];
+        modules = [
+          lanzaboote.nixosModules.lanzaboote
+          ./configuration.nix
+          inputs.home-manager.nixosModules.default
+          (
+            { pkgs, ... }:
+            {
+              nixpkgs.overlays = [
+                inputs.nixpkgs-wayland.overlays.default
+                (import ./gamescope.nix)
+                (import ./proton-ge-custom.nix)
+              ];
+            }
+          )
+        ];
 
+      };
     };
-  };
 }
-
