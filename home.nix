@@ -86,6 +86,10 @@
            nil_ls.enable = true;
          };
        };
+       # Formats the file on save, also if :Format is called
+       lsp-format = {
+         enable = true;
+       };
 
        treesitter = {
          enable = true;
