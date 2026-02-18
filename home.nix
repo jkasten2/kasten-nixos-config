@@ -42,6 +42,7 @@
     tldr # shorter man pages
 
     eza # Better ls command
+    bat
 
     jq
 
