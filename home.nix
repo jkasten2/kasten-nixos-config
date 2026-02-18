@@ -29,6 +29,7 @@
 
   home.packages = with pkgs; [
     unzip
+    p7zip # 7z command
 
     # disk space finders
     dust
@@ -46,7 +47,8 @@
 
     parsec-bin
 
-    sm64coopdx
+    # sm64coopdx
+    xemu
 
     gparted # Must run with sudo -E
 
