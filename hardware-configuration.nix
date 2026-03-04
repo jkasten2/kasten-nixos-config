@@ -23,7 +23,7 @@
     "sd_mod"
     "sr_mod"
   ];
-  boot.initrd.kernelModules = [ "amdgpu" ]; # KASTEN: Added amdgpu, but didn't help steam start
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [
     "kvm-amd"
     "btusb"
