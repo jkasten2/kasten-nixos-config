@@ -69,8 +69,6 @@
     powerOnBoot = true;
   };
 
-  hardware.enableAllFirmware = true;
-
   # KASTEN: Gets steam to launch, but vkcube --validate still has errors with vulkan
   # hardware.opengl -> hardware.graphics
   hardware.graphics = {
