@@ -166,9 +166,6 @@
 
   programs.firefox.enable = true;
 
-  # NOTE: Gamescope must match the wayland version. Otherwise you get an error like this:
-  # [gamescope] [Error] wlserver: [xwayland/server.c:269] Xwayland startup failed, not setting up xwm
-  programs.gamescope.enable = true;
   programs.gamemode.enable = true;
 
   services.pulseaudio.enable = false; # Use Pipewire, the modern sound subsystem
