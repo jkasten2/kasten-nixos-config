@@ -28,6 +28,8 @@
   };
 
   home.packages = with pkgs; [
+    efibootmgr
+
     unzip
     p7zip # 7z command
 
@@ -59,6 +61,14 @@
   home.shellAliases = {
     "cd.." = "cd ..";
     "ll" = "eza -lah";
+
+    "nix-bs" = "sudo nixos-rebuild switch";
+    "nixconf-edit" = "nvim -p ~/.config/nixos/*";
+    "nix-gc" =
+      "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 7d";
+
+    "reboot-bios" = "systemctl reboot --firmware-setup";
+    "reboot-win" = "sudo efibootmgr --bootnext 0002 && sudo reboot";
   };
 
   programs.vim = {
