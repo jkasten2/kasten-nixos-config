@@ -30,6 +30,8 @@
     pkiBundle = "/var/lib/sbctl";
   };
 
+  boot.loader.timeout = 1;
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "KastenNixOS7700x"; # Define your hostname.
