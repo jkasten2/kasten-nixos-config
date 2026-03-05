@@ -62,6 +62,9 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Prevents wrong time when booting into Windows.
+  time.hardwareClockInLocalTime = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
