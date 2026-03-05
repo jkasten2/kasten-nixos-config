@@ -118,9 +118,10 @@
           };
         };
       };
-      treesitter-context = {
-        enable = true;
-      };
+      # Nix lang context is normally too many lines
+      # treesitter-context = {
+      #  enable = true;
+      # };
     };
   };
 
