@@ -47,6 +47,9 @@
     bat
 
     jq
+    expect # Utils like unbuffer
+
+    nvd # nix package version diff tool
 
     parsec-bin
 
@@ -58,18 +61,24 @@
     grim # Screenshot util
   ];
 
-  home.shellAliases = {
-    "cd.." = "cd ..";
-    "ll" = "eza -lah";
+  home.shellAliases =
+    let
+      nixconf-dir = "~/.config/nixos";
+    in
+    {
+      "cd.." = "cd ..";
+      "ll" = "eza -lah";
 
-    "nix-bs" = "sudo nixos-rebuild switch";
-    "nixconf-edit" = "nvim -p ~/.config/nixos/*";
-    "nix-gc" =
-      "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 7d";
+      "nix-bs" = "sudo nixos-rebuild switch";
+      "nixconf-edit" = "nvim -p ${nixconf-dir}/*";
+      "nix-check-update" =
+        "cd ${nixconf-dir}/ && nix flake update && nixos-rebuild build && unbuffer nvd diff /run/current-system ./result | tee results.log";
+      "nix-gc" =
+        "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 7d";
 
-    "reboot-bios" = "systemctl reboot --firmware-setup";
-    "reboot-win" = "sudo efibootmgr --bootnext 0002 && sudo reboot";
-  };
+      "reboot-bios" = "systemctl reboot --firmware-setup";
+      "reboot-win" = "sudo efibootmgr --bootnext 0002 && sudo reboot";
+    };
 
   programs.vim = {
     enable = true;
