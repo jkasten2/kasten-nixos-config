@@ -64,20 +64,22 @@
   home.shellAliases =
     let
       nixconf-dir = "~/.config/nixos";
+      win-boot-disk = "0002";
     in
     {
       "cd.." = "cd ..";
       "ll" = "eza -lah";
 
-      "nix-bs" = "sudo nixos-rebuild switch";
-      "nixconf-edit" = "nvim -p ${nixconf-dir}/*";
-      "nix-check-update" =
+      "nix_dir" = "cd ${nixconf-dir}";
+      "nix_switch" = "sudo nixos-rebuild switch";
+      "nix_edit" = "nvim -p ${nixconf-dir}/*";
+      "nix_check-update" =
         "cd ${nixconf-dir}/ && nix flake update && nixos-rebuild build && unbuffer nvd diff /run/current-system ./result | tee results.log";
-      "nix-gc" =
+      "nix_gc" =
         "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 7d";
 
-      "reboot-bios" = "systemctl reboot --firmware-setup";
-      "reboot-win" = "sudo efibootmgr --bootnext 0002 && sudo reboot";
+      "reboot_bios" = "systemctl reboot --firmware-setup";
+      "reboot_win" = "sudo efibootmgr --bootnext ${win-boot-disk} && sudo reboot";
     };
 
   programs.vim = {
