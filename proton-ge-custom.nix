@@ -17,7 +17,7 @@ let
     }
   ];
   genZipUrl =
-    v: "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/" + "${v}/${v}.tar.gz";
+    v: "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${v}/${v}.tar.gz";
   overrideProtonVersion =
     { version, sha256 }:
     let
