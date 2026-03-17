@@ -80,6 +80,8 @@
 
       "reboot_bios" = "systemctl reboot --firmware-setup";
       "reboot_win" = "sudo efibootmgr --bootnext ${win-boot-disk} && sudo reboot";
+
+      "sleep_now" = "systemctl suspend && exec swaylock";
     };
 
   programs.vim = {
