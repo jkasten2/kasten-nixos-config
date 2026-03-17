@@ -8,12 +8,12 @@ let
       sha256 = "sha256-sJkaDEnfAuEqcLDBtAfU6Rny3P3lOCnG1DusWfvv2Fg=";
     }
     {
-      version = "10-28";
-      sha256 = "sha256-6NvSGX8445la6WU6z9UaaKJm30eg094cuTyhHVDjbOo=";
-    }
-    {
       version = "10-30";
       sha256 = "sha256-YZ+v+dzO70qTs3JxOAk9n7ByIYb3r8SeJBWnzjKQwuQ=";
+    }
+    {
+      version = "10-32";
+      sha256 = "sha256-NxZ4OJUYQdRNQTb62jRET6Ef14LEhynOASIMPvwWeNA=";
     }
   ];
   genZipUrl =
