@@ -15,6 +15,10 @@ let
       version = "10-32";
       sha256 = "sha256-NxZ4OJUYQdRNQTb62jRET6Ef14LEhynOASIMPvwWeNA=";
     }
+    {
+      version = "10-34";
+      sha256 = "sha256-lzPsYYcrp5NoT3B0WFj3o10Z7tXx7xva1wEP3edeuqM=";
+    }
   ];
   genZipUrl =
     v: "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${v}/${v}.tar.gz";

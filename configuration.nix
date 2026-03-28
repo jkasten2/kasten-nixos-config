@@ -151,6 +151,7 @@
       pkgs.proton-ge-bin
       pkgs.proton-ge-10-20-bin
       pkgs.proton-ge-10-32-bin
+      pkgs.proton-ge-10-34-bin
     ];
   };
   nixpkgs.config.packageOverrides = pkgs: {
