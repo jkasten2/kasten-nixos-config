@@ -101,11 +101,12 @@
     };
   };
 
-  environment.loginShellInit = ''
-    echo "TOP .bash_profile"
-    echo $WLR_RENDERER
-    [ "$(tty)" = "/dev/tty1" ] && exec sway
-  '';
+  services.desktopManager.plasma6 = {
+    enable = true;
+  };
+  services.displayManager.plasma-login-manager = {
+    enable = true;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -179,14 +180,9 @@
   # failed to commit changes to dconf: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown:
   #   The name ca.desrt.dconf was not provided by any .service files
   programs.dconf.enable = true;
-  services.blueman.enable = true;
 
   security.rtkit.enable = true; # Enable RealtimeKit for audio purposes
   security.polkit.enable = true; # Required to use Sway with Home-Manager
-
-  # Required when using programs.swaylock.enable = true;
-  # Otherwise it says password is wrong and won't unlock
-  security.pam.services.swaylock = { };
 
   services.pipewire = {
     enable = true;

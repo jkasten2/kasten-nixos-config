@@ -83,7 +83,7 @@
       "reboot_bios" = "systemctl reboot --firmware-setup";
       "reboot_win" = "sudo efibootmgr --bootnext ${win-boot-disk} && sudo reboot";
 
-      "sleep_now" = "systemctl suspend && exec swaylock";
+      "sleep_now" = "systemctl suspend";
     };
 
   programs.vim = {
@@ -163,128 +163,6 @@
         background = "000000";
       };
     };
-  };
-
-  wayland.windowManager.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    systemd.variables = [ "--all" ];
-
-    config = rec {
-      modifier = "Mod4";
-      keybindings =
-        let
-          modifier = config.wayland.windowManager.sway.config.modifier;
-          pipewire_inc_foreground_volume = pkgs.writeShellApplication {
-            name = "pipewire-inc-foreground-volume";
-            text = ''
-              # PURPOSE: Work around for "wpctl set-volume -p PID" bug with increase / decrease volume.
-              #   If a PID has two outputs, one of the volumes will jump way up.
-              #   Example, happens in Firefox when there are two YouTube tabs open. Also with some games.
-              FOREGROUND_PID="$(swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true) | .pid')"
-              PWDUMP_OUTPUT=$(pw-dump)
-              OBJ_IDS=$(echo "$PWDUMP_OUTPUT" | jq --argjson pid "$FOREGROUND_PID" '.[] | select(.info.props."application.process.id"==$pid) | .id')
-              NODE_IDS=$(echo "$OBJ_IDS" | while IFS= read -r line; do echo "$PWDUMP_OUTPUT" | jq --argjson line "$line" '.[] | select(.info.props."client.id"==$line) | .id'; done)
-
-              for node_id in $NODE_IDS; do
-                wpctl set-volume "$node_id" "$1"
-              done
-            '';
-          };
-
-          # mkOptionDefault keeps defaults for all other keybindings
-        in
-        lib.mkOptionDefault {
-          "${modifier}+control+l" = "exec swaylock";
-          "${modifier}+d" = "exec walker";
-
-          "${modifier}+alt+equal" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+";
-          "${modifier}+alt+minus" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-";
-          "${modifier}+control+alt+equal" = "exec ${lib.getExe pipewire_inc_foreground_volume} 2%+";
-          "${modifier}+control+alt+minus" = "exec ${lib.getExe pipewire_inc_foreground_volume} 2%-";
-
-          "Shift+Control+F12" =
-            "exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy";
-        };
-
-      output = {
-        "*" = {
-          scale = "2";
-          allow_tearing = "yes";
-          max_render_time = "off";
-        };
-        HDMI-A-1 = {
-          mode = "3840x2160@120Hz";
-          hdr = "on";
-        };
-        DP-2 = {
-          mode = "3840x2160@240Hz";
-          hdr = "on";
-        };
-      };
-
-      input = {
-        # disable mouse acceleration
-        #   (enabled by default; to set it manually, use "adaptive" instead of "flat"
-        "type:pointer" = {
-          accel_profile = "flat";
-        };
-      };
-
-      fonts = {
-        names = [ "Roboto" ];
-        style = "Normal";
-        size = 11.0;
-      };
-
-      bars = [
-        {
-          position = "top";
-          statusCommand = "while date +'%Y-%m-%d %X'; do sleep 1; done";
-          fonts = {
-            names = [ "Roboto Mono" ];
-            style = "Bold";
-            size = 11.0;
-          };
-        }
-      ];
-      window.commands = [
-        # Sound control UI config;
-        # Always float at the mouse cursor, so it's faster control
-        {
-          command = "floating on, move workspace current, urgent enable, sticky enable, move position cursor, move down [HEIGHT OF STATUS BAR]";
-          criteria = {
-            app_id = "pwvucontrol";
-          };
-        }
-        {
-          command = "floating on, move workspace current, urgent enable, sticky enable, move position cursor, move down [HEIGHT OF STATUS BAR]";
-          criteria = {
-            app_id = "blueman-manager";
-          };
-        }
-      ];
-    };
-
-    # Configs that don't have types yet in home-manager can go here
-    extraConfig = "";
-  };
-
-  programs.swaylock.enable = true;
-  services.mako.enable = true; # Lightweight notification UI
-  services.blueman-applet.enable = true; # Enable bluetooth bar icon
-
-  programs.walker = {
-    enable = true;
-    # runAsService = true;
-    config = {
-      force_keyboard_focus = true;
-      debug = false;
-    };
-  };
-
-  programs.elephant = {
-    installService = true;
   };
 
   programs.obs-studio = {
