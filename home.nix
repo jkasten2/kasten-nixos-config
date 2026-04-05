@@ -140,12 +140,6 @@
     };
   };
 
-  home.pointerCursor = {
-    package = pkgs.adwaita-icon-theme;
-    name = "Adwaita";
-    size = 24;
-  };
-
   programs.foot = {
     enable = true;
     settings = {
