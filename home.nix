@@ -57,6 +57,7 @@
 
     # sm64coopdx
     xemu
+    dolphin-emu
 
     gparted # Must run with sudo -E
   ];
