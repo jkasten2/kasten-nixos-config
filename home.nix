@@ -59,6 +59,8 @@
     dolphin-emu
 
     gparted # Must run with sudo -E
+
+    haruna # Video player
   ];
 
   home.shellAliases =
