@@ -121,8 +121,6 @@
     smem
     ethtool
 
-    wl-clipboard # cp and paste for Sway WM
-
     heroic
     discord
 
@@ -132,8 +130,6 @@
     vulkan-loader
     vulkan-tools
     vulkan-validation-layers
-
-    pwvucontrol # System Volume GUI (PipeWire)
 
     gnome-icon-theme # Icons for some apps, like blueman
 

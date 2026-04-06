@@ -59,8 +59,6 @@
     xemu
 
     gparted # Must run with sudo -E
-
-    grim # Screenshot util
   ];
 
   home.shellAliases =
