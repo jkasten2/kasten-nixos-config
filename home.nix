@@ -13,7 +13,6 @@
   home.stateVersion = "25.11";
 
   imports = [
-    inputs.walker.homeManagerModules.default
     inputs.nixvim.homeModules.nixvim
   ];
 

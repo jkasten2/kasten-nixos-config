@@ -28,19 +28,6 @@
       inputs.nuschtosSearch.inputs.flake-utils.follows = "flake-utils";
       inputs.systems.follows = "flake-utils/systems";
     };
-
-    elephant = {
-      url = "github:abenz1267/elephant";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "flake-utils/systems";
-    };
-    walker = {
-      url = "github:abenz1267/walker";
-      # TODO: Probabaly something this package should handle for us?
-      inputs.elephant.follows = "elephant";
-      inputs.nixpkgs.follows = "elephant/nixpkgs";
-      inputs.systems.follows = "elephant/systems";
-    };
   };
 
   outputs =
