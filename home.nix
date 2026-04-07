@@ -61,6 +61,7 @@
     gparted # Must run with sudo -E
 
     haruna # Video player
+    gnome-calculator # Calculator GUI
   ];
 
   home.shellAliases =
