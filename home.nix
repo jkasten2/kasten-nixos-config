@@ -62,6 +62,8 @@
 
     haruna # Video player
     gnome-calculator # Calculator GUI
+
+    hardinfo2 # GUI hardware info
   ];
 
   home.shellAliases =
