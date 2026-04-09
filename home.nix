@@ -64,6 +64,8 @@
     gnome-calculator # Calculator GUI
 
     hardinfo2 # GUI hardware info
+
+    kdePackages.skanpage # GUI for Scanners
   ];
 
   home.shellAliases =

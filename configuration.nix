@@ -192,11 +192,18 @@
     # jack.enable = true;
   };
 
-  services.avahi.enable = true;
-
   programs.obs-studio = {
     enable = true;
     enableVirtualCamera = true;
+  };
+
+  services.printing.enable = true;
+  services.system-config-printer.enable = true;
+  # Enable network printer discovery
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
   };
 
   services.gnome.gnome-keyring.enable = true;
