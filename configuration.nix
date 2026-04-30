@@ -136,6 +136,8 @@
 
     xdg-utils
     calc
+
+    (pkgs.callPackage ./nitrox.nix { })
   ];
 
   fonts.packages = with pkgs; [
