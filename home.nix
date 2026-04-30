@@ -66,6 +66,8 @@
     hardinfo2 # GUI hardware info
 
     kdePackages.skanpage # GUI for Scanners
+
+    kdePackages.ksystemlog
   ];
 
   home.shellAliases =
