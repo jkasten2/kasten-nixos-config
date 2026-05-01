@@ -9,9 +9,9 @@
         };
       in
       {
-        kdePackages = master-pkgs.kdePackages;
-        services.desktopManager.plasma6 = master-pkgs.services.desktopManager.plasma6;
-        services.displayManager.plasma-login-manager = master-pkgs.services.desktopManager.plasma6;
+        #kdePackages = master-pkgs.kdePackages;
+        #services.desktopManager.plasma6 = master-pkgs.services.desktopManager.plasma6;
+        #services.displayManager.plasma-login-manager = master-pkgs.services.desktopManager.plasma6;
       }
     )
   ];
