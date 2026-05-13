@@ -69,6 +69,8 @@
     kdePackages.skanpage # GUI for Scanners
 
     kdePackages.ksystemlog
+
+    mumble
   ];
 
   home.shellAliases =
