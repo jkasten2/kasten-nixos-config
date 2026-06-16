@@ -136,7 +136,7 @@
 
       treesitter = {
         enable = true;
-        withAllGrammars = true;
+        nixGrammars = true;
         settings = {
           highlight = {
             enable = true;
