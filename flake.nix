@@ -51,6 +51,7 @@
               nixpkgs.overlays = [
                 inputs.nixpkgs-wayland.overlays.default
                 (import ./proton-ge-custom.nix)
+                (import ./proton-cachy-custom.nix)
               ];
             }
           )
