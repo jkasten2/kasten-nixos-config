@@ -59,6 +59,8 @@
     dolphin-emu
     parallel-launcher # n64 emu
 
+    lutris
+
     gparted # Must run with sudo -E
 
     haruna # Video player
