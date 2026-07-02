@@ -73,6 +73,8 @@
     kdePackages.ksystemlog
 
     mumble
+
+    ungoogled-chromium
   ];
 
   home.shellAliases =
