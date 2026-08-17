@@ -132,8 +132,6 @@
     vulkan-tools
     vulkan-validation-layers
 
-    gnome-icon-theme # Icons for some apps, like blueman
-
     xdg-utils
     calc
   ];
