@@ -141,6 +141,8 @@
     nerd-fonts.symbols-only
   ];
 
+  services.teamviewer.enable = true;
+
   programs.steam = {
     enable = true;
     extraCompatPackages = [
