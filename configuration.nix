@@ -109,6 +109,9 @@
     enable = true;
   };
 
+  # LACT (Linux AMDGPU Controller) for fan control and overclocking
+  services.lact.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
