@@ -151,8 +151,9 @@
     extraCompatPackages = [
       pkgs.proton-ge-bin
       pkgs.proton-ge-10-20-bin
-      pkgs.proton-ge-10-32-bin
       pkgs.proton-ge-10-34-bin
+      pkgs.proton-ge-11-3-bin
+      pkgs.proton-ge-11-6-bin
       pkgs."proton-cachyos-11.0-20260602-bin"
       pkgs."proton-cachyos-11.0-20260703-bin"
     ];

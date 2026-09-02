@@ -5,25 +5,34 @@ let
   versionList = [
     {
       version = "10-20";
+      arch = "";
       sha256 = "sha256-sJkaDEnfAuEqcLDBtAfU6Rny3P3lOCnG1DusWfvv2Fg=";
     }
     {
-      version = "10-30";
-      sha256 = "sha256-YZ+v+dzO70qTs3JxOAk9n7ByIYb3r8SeJBWnzjKQwuQ=";
-    }
-    {
-      version = "10-32";
-      sha256 = "sha256-NxZ4OJUYQdRNQTb62jRET6Ef14LEhynOASIMPvwWeNA=";
-    }
-    {
       version = "10-34";
+      arch = "";
       sha256 = "sha256-lzPsYYcrp5NoT3B0WFj3o10Z7tXx7xva1wEP3edeuqM=";
+    }
+    {
+      version = "11-3";
+      arch = "";
+      sha256 = "sha256-RiCmnUKeZRhPUCgm7fsROKFkAl37+/tYkA47tQtkIF4=";
+    }
+    {
+      version = "11-6";
+      arch = "-x86_64";
+      sha256 = "sha256-rX27DUrrrHtR1cgyr/424m9JPjrdASIisVGv2vWzMAs=";
     }
   ];
   genZipUrl =
-    v: "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${v}/${v}.tar.gz";
+    v: arch:
+    "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${v}/${v}${arch}.tar.gz";
   overrideProtonVersion =
-    { version, sha256 }:
+    {
+      version,
+      arch,
+      sha256,
+    }:
     let
       displayName = "GE-Proton${version}";
       pname = "proton-ge-${version}-bin";
@@ -33,7 +42,7 @@ let
         pname = pname;
         version = displayName;
         src = prev.fetchzip {
-          url = genZipUrl displayName;
+          url = genZipUrl displayName arch;
           sha256 = sha256;
         };
       };
