@@ -137,9 +137,7 @@
     amdgpu_top
     radeontop # Simpler than amdgpu_top, but doesn't get updates anymore
 
-    vulkan-loader
-    vulkan-tools
-    vulkan-validation-layers
+    vulkan-tools # includes vkcube & vulkaninfo
 
     xdg-utils
     calc
@@ -156,6 +154,8 @@
 
   programs.steam = {
     enable = true;
+    # Work around for small cursor on over 100% display scaling
+    extraPackages = [ pkgs.kdePackages.breeze ];
     extraCompatPackages = [
       pkgs.proton-ge-bin
     ];
