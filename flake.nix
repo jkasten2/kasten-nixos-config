@@ -14,12 +14,6 @@
     #       usages to keep the .lock file cleaner?
     flake-utils.url = "github:numtide/flake-utils";
 
-    nixpkgs-wayland = {
-      url = "github:nix-community/nixpkgs-wayland";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.lib-aggregate.inputs.flake-utils.follows = "flake-utils";
-    };
-
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -49,7 +43,6 @@
             { pkgs, ... }:
             {
               nixpkgs.overlays = [
-                inputs.nixpkgs-wayland.overlays.default
               ];
             }
           )
