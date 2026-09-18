@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -71,21 +70,11 @@
 
   hardware.amdgpu.overdrive.enable = true;
 
-  # KASTEN: Gets steam to launch, but vkcube --validate still has errors with vulkan
   # hardware.opengl -> hardware.graphics
   hardware.graphics = {
     enable = true;
     # driSupport = true; #NO longer has any effect
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      mesa
-
-      # KASTEN: Didn't help fix this error:
-      #   terminator_CreateInstance: Received return code -3 from call to vkCreateInstance in ICD /nix/store/js9cfbjvlsls14nddk39fw74vyvlhz4l-mesa-25.0.7/lib/libvulkan_dzn.so
-      vulkan-loader
-      vulkan-validation-layers
-      vulkan-extension-layer
-    ];
   };
 
 }
