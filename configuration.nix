@@ -151,6 +151,9 @@
   ];
 
   services.teamviewer.enable = true;
+  # Disable background service by default, use the following when needed:
+  #   sudo systemctl start teamviewerd.service
+  systemd.services.teamviewerd.wantedBy = lib.mkForce [ ];
 
   programs.steam = {
     enable = true;
