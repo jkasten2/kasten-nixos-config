@@ -169,14 +169,18 @@
     };
     steam = pkgs.steam.override {
       extraEnv = {
-        # Prevents use of X11, can fix scaling issues
+        # Prevents use of xwayland, can fix scaling issues & lower input latency
         PROTON_ENABLE_WAYLAND = 1;
+        # Enable HDR, DXVK_HDR is newer
         PROTON_ENABLE_HDR = 1;
+        DXVK_HDR = 1;
+
+        # Workaround for some WM/DE (Not needed for KDE)
         # Allows game to run in background;
         # This prevents some games from crashing and allows networking to
-        # work in the background too, peventing disconnects.
+        # work in the background too, preventing disconnects.
         # If you need to disable per game, use = with nothing to the right.
-        MESA_VK_WSI_PRESENT_MODE = "immediate";
+        # MESA_VK_WSI_PRESENT_MODE = "immediate";
       };
     };
   };
