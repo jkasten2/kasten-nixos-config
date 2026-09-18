@@ -157,7 +157,7 @@
     # Work around for small cursor on over 100% display scaling
     extraPackages = [ pkgs.kdePackages.breeze ];
     extraCompatPackages = [
-      pkgs.proton-ge-bin
+      # Easier to just manage other Proton versions with a GUI like Heroic launcher pointed at steam
     ];
   };
   nixpkgs.config.packageOverrides = pkgs: {
