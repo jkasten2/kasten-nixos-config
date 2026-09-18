@@ -47,6 +47,8 @@
     eza # Better ls command
     bat
 
+    vscode
+
     jq
     expect # Utils like unbuffer
 
