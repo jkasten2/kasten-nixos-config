@@ -112,6 +112,12 @@
   # LACT (Linux AMDGPU Controller) for fan control and overclocking
   services.lact.enable = true;
 
+  # Workaround for URL backlinks into programs, such as Unity Hub
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -137,6 +143,8 @@
 
     xdg-utils
     calc
+
+    unityhub
   ];
 
   fonts.packages = with pkgs; [
@@ -153,6 +161,12 @@
     ];
   };
   nixpkgs.config.packageOverrides = pkgs: {
+    unityhub = pkgs.unityhub.override {
+      extraLibs = pkgs: [
+        pkgs.ncurses
+        pkgs.libxml2
+      ];
+    };
     steam = pkgs.steam.override {
       extraEnv = {
         # Prevents use of X11, can fix scaling issues
