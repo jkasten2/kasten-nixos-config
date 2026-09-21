@@ -142,6 +142,8 @@
     xdg-utils
     calc
 
+    net-tools # includes commands such as route
+
     unityhub
   ];
 
