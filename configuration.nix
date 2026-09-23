@@ -105,12 +105,22 @@
     };
   };
 
+  # KDE
   services.desktopManager.plasma6 = {
     enable = true;
   };
   services.displayManager.plasma-login-manager = {
     enable = true;
   };
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    baloo # disable KDE file indexing
+    baloo-widgets
+    discover
+  ];
+
+  # Disable accessibility services:
+  services.orca.enable = false; # screen reader
+  services.speechd.enable = false; # text-to-speech
 
   # LACT (Linux AMDGPU Controller) for fan control and overclocking
   services.lact.enable = true;
