@@ -77,6 +77,8 @@
     mumble
 
     ungoogled-chromium
+
+    keepassxc
   ];
 
   home.shellAliases =
