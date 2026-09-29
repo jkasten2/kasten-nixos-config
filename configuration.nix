@@ -156,6 +156,7 @@
     calc
 
     net-tools # includes commands such as route
+    traceroute
 
     unityhub
   ];
