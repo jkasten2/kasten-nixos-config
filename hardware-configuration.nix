@@ -68,7 +68,10 @@
     powerOnBoot = true;
   };
 
-  hardware.amdgpu.overdrive.enable = true;
+  # NOTE: Enabling the overdrive feature cause extra screen flicker when using HDMI on kernel 7.3-rc5
+  # NOTE:2: Might also be causing "Illegal opcode in command stream" amdgpu driver crashes.
+  # hardware.amdgpu.overdrive.enable = true;
+  # boot.kernelParams = [ "amdgpu.dcfeaturemask=0x400" ]; # Enable HDMI 2.1 support in kernel 7.3
 
   # hardware.opengl -> hardware.graphics
   hardware.graphics = {
@@ -76,5 +79,4 @@
     # driSupport = true; #NO longer has any effect
     enable32Bit = true;
   };
-
 }

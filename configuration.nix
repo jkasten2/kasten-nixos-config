@@ -21,6 +21,9 @@
     "flakes"
   ];
 
+  # linuxPackages_MAJOR_MINOR = Use a specific version, example linuxPackages_6_18
+  # linuxPackages_latest  = Latest stable
+  # linuxPackages_testing = Latest RC
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bootloader
