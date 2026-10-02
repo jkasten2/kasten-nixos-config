@@ -21,7 +21,7 @@
     "flakes"
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bootloader
   # Must be disable for boot.lanzaboote (Secure Boot) to work
