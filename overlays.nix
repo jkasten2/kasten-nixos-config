@@ -14,13 +14,11 @@
         #services.desktopManager.plasma6 = master-pkgs.services.desktopManager.plasma6;
         #services.displayManager.plasma-login-manager = master-pkgs.services.desktopManager.plasma6;
 
-        # Work around for build failure on package v4l2loopback. This module is used by obs studio.
+        # Use fix from master for v4l2loopback. This module is used by obs studio.
         # https://github.com/NixOS/nixpkgs/issues/575851
         linuxPackages_latest = prev.linuxPackages_latest.extend (
-          _: lp: {
-            v4l2loopback = lp.v4l2loopback.overrideAttrs (o: {
-              installFlags = (o.installFlags or [ ]) ++ [ "DEPMOD=true" ];
-            });
+          _: _: {
+            v4l2loopback = master-pkgs.linuxPackages_latest.v4l2loopback;
           }
         );
       }
