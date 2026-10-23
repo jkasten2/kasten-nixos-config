@@ -49,6 +49,10 @@
     # Or disable the firewall altogether.
     firewall.enable = true;
     nftables.enable = true;
+    # Add custom rules to the input chain
+    firewall.extraInputRules = ''
+      meta pkttype unicast udp dport 1024-65535 accept comment "RFC6056 Ephemeral Port Number Range, allows replies from things like mDNS";
+    '';
   };
 
   # Set your time zone.
