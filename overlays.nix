@@ -5,7 +5,7 @@
       final: prev:
       let
         master-pkgs = import inputs.nixpkgs-master {
-          system = prev.system;
+          localSystem = final.stdenv.hostPlatform;
         };
       in
       {
