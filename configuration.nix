@@ -120,6 +120,7 @@
     baloo-widgets
     discover
   ];
+  programs.kde-pim.enable = false;
 
   # Disable accessibility services:
   services.orca.enable = false; # screen reader
