@@ -55,6 +55,7 @@
     nvd # nix package version diff tool
 
     parsec-bin
+    moonlight-qt
 
     # sm64coopdx
     xemu

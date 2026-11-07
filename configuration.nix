@@ -258,6 +258,15 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  services.sunshine = {
+    enable = true;
+    autoStart = false;
+    openFirewall = true;
+    settings = {
+      sunshine_name = "KastenNixOS_7700X";
+    };
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
