@@ -30,13 +30,17 @@
   ];
   boot.extraModulePackages = [ ];
 
-  # Work around for amdgpu flicker on 7900 XT(X) cards on kernel 7.3, tested up to 7.3.4
-  #   Issue is most noticeable with 4k@120hz
-  # This keeps sub-viewport disabled to avoid this issue.
-  # Follow this thread for updates on the issue:
-  # https://lore.kernel.org/all/CADnq5_NuQEvx8OpyPOuXgtzQB67jgaNtwW85X70UraOLaF=M=A@mail.gmail.com/
   boot.kernelParams = [
+    # Work around for amdgpu flicker on 7900 XT(X) cards on kernel 7.3, tested up to 7.3.4
+    #   Issue is most noticeable with 4k@120hz
+    # This keeps sub-viewport disabled to avoid this issue.
+    # Follow this thread for updates on the issue:
+    # https://lore.kernel.org/all/CADnq5_NuQEvx8OpyPOuXgtzQB67jgaNtwW85X70UraOLaF=M=A@mail.gmail.com/
     "amdgpu.dcdebugmask=0x20000"
+
+    # Possibly fixes some GPU stall issues, trade off is there might be more CPU usage.
+    # https://gitlab.freedesktop.org/drm/amd/-/work_items/226#note_308665
+    "amdgpu.vm_update_mode=3"
   ];
 
   fileSystems."/" = {
