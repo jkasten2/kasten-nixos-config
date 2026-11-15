@@ -30,6 +30,15 @@
   ];
   boot.extraModulePackages = [ ];
 
+  # Work around for amdgpu flicker on 7900 XT(X) cards on kernel 7.3, tested up to 7.3.4
+  #   Issue is most noticeable with 4k@120hz
+  # This keeps sub-viewport disabled to avoid this issue.
+  # Follow this thread for updates on the issue:
+  # https://lore.kernel.org/all/CADnq5_NuQEvx8OpyPOuXgtzQB67jgaNtwW85X70UraOLaF=M=A@mail.gmail.com/
+  boot.kernelParams = [
+    "amdgpu.dcdebugmask=0x20000"
+  ];
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/29c5f8aa-de53-4041-9c04-a03e7ab8cb2f";
     fsType = "ext4";
@@ -70,7 +79,7 @@
 
   # NOTE: Enabling the overdrive feature cause extra screen flicker when using HDMI on kernel 7.3-rc5
   # NOTE:2: Might also be causing "Illegal opcode in command stream" amdgpu driver crashes.
-  # hardware.amdgpu.overdrive.enable = true;
+  hardware.amdgpu.overdrive.enable = false;
   # boot.kernelParams = [ "amdgpu.dcfeaturemask=0x400" ]; # Enable HDMI 2.1 support in kernel 7.3
 
   # hardware.opengl -> hardware.graphics
