@@ -63,6 +63,7 @@
     parallel-launcher # n64 emu
 
     lutris
+    protonplus
 
     gparted # Must run with sudo -E
 
