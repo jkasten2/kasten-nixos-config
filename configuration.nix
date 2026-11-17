@@ -153,7 +153,7 @@
     ethtool
 
     heroic
-    discord
+    (discord.override { withTTS = false; })
 
     amdgpu_top
     radeontop # Simpler than amdgpu_top, but doesn't get updates anymore
