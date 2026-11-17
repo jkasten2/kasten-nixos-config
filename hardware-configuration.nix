@@ -38,9 +38,30 @@
     # https://lore.kernel.org/all/CADnq5_NuQEvx8OpyPOuXgtzQB67jgaNtwW85X70UraOLaF=M=A@mail.gmail.com/
     "amdgpu.dcdebugmask=0x20000"
 
+    # Enable HDMI 2.1 support in kernel 7.3
+    # "amdgpu.dcfeaturemask=0x400"
+
     # Possibly fixes some GPU stall issues, trade off is there might be more CPU usage.
     # https://gitlab.freedesktop.org/drm/amd/-/work_items/226#note_308665
     "amdgpu.vm_update_mode=3"
+
+    # Allows user-space to directly add draw calls to the GPU, without going through the kernel
+    # This should lower CPU usage and normally leads to better 1% lowers, but very app depended.
+    # Could be less stable.
+    # Support: Seems to be available for RDNA 4, but was buggy for RDNA 3 so it seems AMD reverted it.
+    #    However AMD might bring it back, as they bump the firmware versions to very specific versions
+    #    in gfx_v11_0.c.
+    # We just need to wait for AMD to release a new firmware
+    # "amdgpu.user_queue=1"
+
+    # Mid command buffer preemption.
+    # I think this enables the kernel to allow higher priority GPU calls if
+    # needed. Example using a web browser while playing a game.
+    # However for AMD cards this seems to require cp_gfx_shadow which in-turn
+    # requires amdgpu_sriov_vf. And SR-IOV isn't enabled in the VBIOS for
+    # consumer AMD cards.
+    # While not exactly 1-to-1 amdgpu.user_queue may also provide this benefit.
+    # "amdgpu.mcbp=1"
   ];
 
   fileSystems."/" = {
@@ -84,7 +105,6 @@
   # NOTE: Enabling the overdrive feature cause extra screen flicker when using HDMI on kernel 7.3-rc5
   # NOTE:2: Might also be causing "Illegal opcode in command stream" amdgpu driver crashes.
   hardware.amdgpu.overdrive.enable = false;
-  # boot.kernelParams = [ "amdgpu.dcfeaturemask=0x400" ]; # Enable HDMI 2.1 support in kernel 7.3
 
   # hardware.opengl -> hardware.graphics
   hardware.graphics = {
