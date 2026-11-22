@@ -167,6 +167,8 @@
     traceroute
 
     unityhub
+
+    kdePackages.partitionmanager
   ];
 
   fonts.packages = with pkgs; [
