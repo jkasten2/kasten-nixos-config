@@ -39,7 +39,7 @@
     "amdgpu.dcdebugmask=0x20000"
 
     # Enable HDMI 2.1 support in kernel 7.3
-    # "amdgpu.dcfeaturemask=0x400"
+    "amdgpu.dcfeaturemask=0x400"
 
     # Possibly fixes some GPU stall issues, trade off is there might be more CPU usage.
     # https://gitlab.freedesktop.org/drm/amd/-/work_items/226#note_308665
