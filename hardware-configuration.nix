@@ -5,6 +5,7 @@
   config,
   lib,
   modulesPath,
+  pkgs,
   ...
 }:
 
@@ -39,7 +40,7 @@
     "amdgpu.dcdebugmask=0x20000"
 
     # Enable HDMI 2.1 support in kernel 7.3
-    "amdgpu.dcfeaturemask=0x400"
+    # "amdgpu.dcfeaturemask=0x400"
 
     # Possibly fixes some GPU stall issues, trade off is there might be more CPU usage.
     # https://gitlab.freedesktop.org/drm/amd/-/work_items/226#note_308665
@@ -63,6 +64,35 @@
     # While not exactly 1-to-1 amdgpu.user_queue may also provide this benefit.
     # "amdgpu.mcbp=1"
   ];
+
+  # Set to PIXEL_ENCODING_YCBCR420 to support 4K@120hz with my DP1.4 to HDMI 2.1 adapter.
+  systemd.services.amdgpu-force-yuv420 = {
+    description = "Force YCbCr 4:2:0 pixel format on DP-1";
+    after = [ "sys-kernel-debug.mount" ];
+    wants = [ "sys-kernel-debug.mount" ];
+    before = [ "display-manager.service" ];
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.coreutils ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      dir="/sys/kernel/debug/dri/0000:03:00.0/DP-1"
+      for _ in $(seq 1 50); do
+        [ -e "$dir/force_yuv_pixel_format" ] && break
+        sleep 0.1
+      done
+
+      if [ ! -e "$dir/force_yuv_pixel_format" ]; then
+        echo "Timed out waiting for $dir/force_yuv_pixel_format" >&2
+        exit 1
+      fi
+
+      echo 4 > "$dir/force_yuv_pixel_format"
+      echo 1 > "$dir/trigger_hotplug"
+    '';
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/29c5f8aa-de53-4041-9c04-a03e7ab8cb2f";
