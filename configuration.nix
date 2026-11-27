@@ -99,6 +99,8 @@
   # Required for HDR in sway
   environment.variables = {
     WLR_RENDERER = "vulkan";
+    # Limit C/C++ builds to not eat up all CPU and RAM
+    CMAKE_BUILD_PARALLEL_LEVEL = 12;
   };
 
   environment.variables.EDITOR = "nvim";
